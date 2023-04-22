@@ -3,16 +3,16 @@
 @section('book_header')
 
 @section('content')
+<div class="flex justify-end">
     <nav>
         <ul>
             <form action="{{ route('books.index') }}" method="GET">
                 @csrf
-                <li>商品検索<input type="text" name="keyword" value="{{ $keyword }}"><button type="submit"
-                        class="bg-blue-500 text-white rounded px-4 py-2">検索</button></li>
+                <li><input type="text" name="keyword" class="font_icon" value="{{ $keyword }}" placeholder="&#xf002"><button type="submit" class = "bg-blue-500 text-white rounded px-4 py-2 ">検索</button></li>
             </form>
             <li>
                 <input type="hidden" name="category">
-                カテゴリー検索:<select name="category">
+                <select name="category" class="ml-28 mt-3">
                     <option value="hidden">カテゴリー検索</option>
                     @foreach ($categories->unique('category') as $category)
                         <option value="{{ $category->id }}">{{ $category->category }}</option>
@@ -21,6 +21,7 @@
             </li>
         </ul>
     </nav>
+    </div>
     <h2 class="text-center text-6xl font-mono border-b-8">本一覧画面</h2>
     <div class="flex flex-wrap mt-6">
         @foreach ($items as $item)
@@ -43,4 +44,5 @@
             </div>
         @endforeach
     </div>
+    {{ $items->links() }}
 @endsection

@@ -2,6 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+.menu-btn {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    color: #fff;
+}
+
+/* メニュー本体 */
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #555;
+}
+
+.menu_item {
+    width: 100%;
+    height: auto;
+    padding: .5em 1em;
+    text-align: center;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+/* アニメーション部分 */
+.menu {
+    transform: translateX(100vw);
+    transition: all .3s linear;
+}
+
+.menu.is-active {
+    transform: translateX(0);
+}
+
+/* font-awesome表示 */
+.font_icon {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-weight: normal;
+}
+/* ここまで */
+
+/* background画像表示 */
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e61702d6e6f727468656173742d312e616d617a6f6e6177732e636f6d2f302f3639383433392f61383039383838312d386430392d626562642d316662622d6138633337616334376439612e6a706567.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover
+}
+/* ここまで */
+
 ul {
     padding-left: 0;
 }
@@ -9,3 +77,4 @@ ul {
 li {
     list-style: none;
 }
+

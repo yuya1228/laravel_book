@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
 use InterventionImage;
 
 class BooksController extends Controller
@@ -28,6 +29,7 @@ class BooksController extends Controller
         }
         $items = $query->get();
         // ここまで
+        $items = Book::paginate(8);
 
         $categories = Category::all();
         $books = Book::all();

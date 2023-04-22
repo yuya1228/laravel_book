@@ -42,7 +42,7 @@
             </div>
             <div>
                 <label for="quantity">数</label>
-                <input type="number" name="quantity" min="0" value="{{ old('quantity') }}" placeholder="在庫数を入れてください">
+                <input type="number" name="quantity" min="0" value="{{ old('quantity') }}" min:0 placeholder="在庫数を入れてください">
                 @error('quantity')
                     <li>{{ $message }}</li>
                 @enderror
