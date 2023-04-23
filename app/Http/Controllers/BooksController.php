@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
 use App\Http\Requests\BookRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
 use InterventionImage;
@@ -34,7 +35,10 @@ class BooksController extends Controller
         $categories = Category::all();
         $books = Book::all();
 
-        return view('books.index', compact('books', 'categories', 'keyword', 'items',));
+        // 現在、ログインしているユーザーの取得
+        $user = Auth::user();
+
+        return view('books.index', compact('books', 'categories', 'keyword', 'items','user'));
     }
 
     /**
@@ -48,6 +52,7 @@ class BooksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // 新規登録処理
     public function store(BookRequest $request)
     {
         $image = $request->file('image');

@@ -1,3 +1,11 @@
+import './bootstrap';
+
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
 (function () {
     'use strict';
 
@@ -10,6 +18,6 @@
 var app = new Vue({
     el: '#app',
     data: {
-        open:false,
+        open: false,
     }
 })
