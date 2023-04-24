@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ use App\Http\Controllers\BooksController;
 
 // CRUD
 Route::resource('/books', BooksController::class);
+
+Route::post('/charge',[StripeController::class,'charge'])->name('stripe.charge');
 
 Route::get('/', function () {
     return view('welcome');

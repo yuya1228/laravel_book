@@ -17,7 +17,7 @@
                     <input type="text" name="name" value="{{ $books->name }}"></label>
             </li>
             <li>
-                <label for="category_id">在庫数
+                <label for="category_id">カテゴリー
                     <input type="number" name="category_id" value="{{ $books->category_id }}">
                 </label>
             <li>
@@ -25,8 +25,14 @@
                     <textarea name="text" cols="30" rows="10">{{ $books->text }}</textarea>
                 </label>
             </li>
+            <li>
+                <label for="price">
+                    <p>価格</p>
+                    <input type="number" name="price" min=0 max=20000 value="{{ $books->price }}">円
+                </label>
+            </li>
             <label for="quantity">在庫数
-                <input type="number" name="quantity" value="{{ $books->quantity }}">
+                <input type="number" name="quantity" min:0 value="{{ $books->quantity }}">
             </label>
             </li>
         </ul>

@@ -3,13 +3,13 @@
 @section('book_header')
 
 @section('content')
-@if (Auth::check())
-  <p class="font-mono text-2xl mt-10">こんにちは＾＾{{$user->name}}さん</p>
-@else
-  <p class="font-mono text-2xl">
-    ログインしてください（<a href="/login">ログイン</a>|<a href="/register">登録</a>）
-  </p>
-@endif
+    @if (Auth::check())
+        <p class="font-mono text-2xl mt-10">こんにちは＾＾{{ $user->name }}さん</p>
+    @else
+        <p class="font-mono text-2xl">
+            ログインしてください（<a href="/login">ログイン</a>|<a href="/register">登録</a>）
+        </p>
+    @endif
     <div class="flex justify-end">
         <nav>
             <ul>
@@ -32,14 +32,15 @@
         </nav>
     </div>
     <h2 class="text-center text-6xl font-mono">本一覧画面</h2>
-    <div class="flex flex-wrap mt-6">
+    <div class="flex flex-wrap mt-6 text-center">
         @foreach ($items as $item)
-            <img src="{{ asset('storage/' . $item->image) }}" style="width: 12%;" class="p-3">
+            <img src="{{ asset('storage/' . $item->image) }}" style="width: 17%;" class="p-3">
             <div class="mr-10">
                 <h2 class="mt-4 font-bold">タイトル</h2>
                 <h3>{{ $item->name }}</h3>
                 <p class="mt-2">商品内容<br>{{ $item->text }}</p>
                 <p class="mt-2">カテゴリー:{{ $item->category }}</p>
+                <p class="mt-2">価格:{{ $item->price }}円</p>
                 <p class="mt-2">在庫数:{{ $item->quantity }}</p>
                 <a href="{{ route('books.show', $item->id) }}"
                     class="bg-blue-500 hover:bg-blue-400 text-white rounded px-1 py-1">詳細</a>

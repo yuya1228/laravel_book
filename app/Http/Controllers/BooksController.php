@@ -18,6 +18,7 @@ class BooksController extends Controller
      */
     public function index(Request $request)
     {
+        $items = Book::paginate(8);
         // 検索機能
         $keyword = $request->input('keyword');
         $categories = $request->input('category');
@@ -28,13 +29,13 @@ class BooksController extends Controller
         if (!empty($keyword)) {
             $query->where('name', 'LIKE', "%{$keyword}%");
         }
-        $items = $query->get();
+
+        // ページネート+joinで結合したデータの取得
+        $items = $query->paginate(3);
         // ここまで
-        $items = Book::paginate(8);
 
         $categories = Category::all();
         $books = Book::all();
-
         // 現在、ログインしているユーザーの取得
         $user = Auth::user();
 
@@ -62,6 +63,7 @@ class BooksController extends Controller
             'name' => $request->name,
             'image' => $img,
             'text' => $request->text,
+            'price'=>$request->price,
             'category_id' => $request->category_id,
             'quantity' => $request->quantity,
         ]);
@@ -101,6 +103,7 @@ class BooksController extends Controller
             'name' => $request->name,
             'category_id' => $request->category_id,
             'text' => $request->text,
+            'price'=>$request->price,
             'quantity' => $request->quantity,
         ]);
         return redirect()->route('books.index');
