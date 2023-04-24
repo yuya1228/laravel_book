@@ -30,6 +30,10 @@ class BooksController extends Controller
             $query->where('name', 'LIKE', "%{$keyword}%");
         }
 
+        if(!empty($categories)){
+            $query->where('category_id','LIKE',$categories);
+        }
+
         // ページネート+joinで結合したデータの取得
         $items = $query->paginate(3);
         // ここまで

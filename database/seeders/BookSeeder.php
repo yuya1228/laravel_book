@@ -19,7 +19,7 @@ class BookSeeder extends Seeder
             'name' => 'PHP',
             'image' => '51IFh0hD6PS._SX260_.jpg',
             'text' => 'PHPの学習本です。',
-            'price'=>1200,
+            'price'=>1000,
             'quantity' => 1
         ]);
 
@@ -29,7 +29,7 @@ class BookSeeder extends Seeder
             'name' => 'JavaScript',
             'image' => '51i53tWFAfL._SX394_BO1,204,203,200_.jpg',
             'text' => 'JavaScriptの学習本です。',
-            'price'=>1300,
+            'price'=>1000,
             'quantity' => 1
         ]);
 
@@ -39,7 +39,7 @@ class BookSeeder extends Seeder
             'name' => 'Java',
             'image' => '519fE4PV71L.jpg',
             'text' => 'Javaの学習本です。',
-            'price'=>1400,
+            'price'=>1000,
             'quantity' => 1.
         ]);
 
@@ -49,7 +49,7 @@ class BookSeeder extends Seeder
             'name' => 'Ruby',
             'image' => '51gT-Nf1DZL._SX218_BO1,204,203,200_QL40_ML2_.jpg',
             'text' => 'Rubyの学習本です。',
-            'price'=>1500,
+            'price'=>1000,
             'quantity' => 1,
         ]);
 
@@ -59,7 +59,7 @@ class BookSeeder extends Seeder
             'name' => 'Python',
             'image' => '519692r4Q7L._SX218_BO1,204,203,200_QL40_ML2_.jpg',
             'text' => 'Pythonの学習本です。',
-            'price'=>1600,
+            'price'=>1000,
             'quantity' => 1,
         ]);
     }

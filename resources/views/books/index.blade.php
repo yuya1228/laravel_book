@@ -18,16 +18,16 @@
                     <li><input type="text" name="keyword" class="font_icon" value="{{ $keyword }}"
                             placeholder="&#xf002"><button type="submit"
                             class="bg-blue-500 text-white rounded px-4 py-2 ">検索</button></li>
-                </form>
                 <li>
                     <input type="hidden" name="category">
                     <select name="category" class="ml-28 mt-3">
                         <option value="hidden">カテゴリー検索</option>
-                        @foreach ($categories->unique('category') as $category)
+                        @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->category }}</option>
                         @endforeach
                     </select>
                 </li>
+                </form>
             </ul>
         </nav>
     </div>
