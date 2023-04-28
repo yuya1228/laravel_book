@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <header>
     @yield('book_header')
@@ -25,6 +28,9 @@
             <a href="{{ route('books.index') }}" class="menu_item">一覧ページ</a>
             @can('admin')
                 <a href="{{ route('books.create') }}" class="menu_item">本の登録</a>
+            @endcan
+            @can('admin')
+                <a href="{{ route('admin.create') }}" class="menu_item">管理者専用ユーザー作成</a>
             @endcan
             <a href="/register" class="menu_item">新規登録</a>
             <a href="/login" class="menu_item">ログイン</a>

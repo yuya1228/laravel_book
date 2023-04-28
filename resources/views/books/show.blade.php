@@ -6,7 +6,7 @@
     <div class="text-center font-mono">
         <img src="{{ asset('storage/' . $books->image) }}" alt="" style="width: 20%;" class="m-auto mt-32">
         <h2 class="text-3xl">タイトル</h2>
-        <p class="text-2xl">{{ $books->name }}</p>
+        <p class="text-2xl">{{ $books->book_name }}</p>
         <p>商品内容:{{ $books->text }}</p>
         <p>価格:{{ $books->price }}円</p>
         <p>在庫数:{{ $books->quantity }}</p>

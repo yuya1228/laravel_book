@@ -1,8 +1,16 @@
 @extends('layouts.book')
 
 @section('book_header')
-
+ {{-- フラッシュメッセージ --}}
+    <script>
+        @if (session('cart_message'))
+            $(function() {
+                toastr.success('{{ session('cart_message') }}')
+            });
+        @endif
+    </script>
 @section('content')
+
     @if (Auth::check())
         <p class="font-mono text-2xl mt-10">こんにちは＾＾{{ $user->name }}さん</p>
     @else
@@ -10,6 +18,7 @@
             ログインしてください（<a href="/login">ログイン</a>|<a href="/register">登録</a>）
         </p>
     @endif
+
     <div class="flex justify-end">
         <nav>
             <ul>
@@ -37,7 +46,7 @@
             <img src="{{ asset('storage/' . $item->image) }}" style="width: 17%;" class="p-3">
             <div class="mr-10">
                 <h2 class="mt-4 font-bold">タイトル</h2>
-                <h3>{{ $item->name }}</h3>
+                <h3>{{ $item->book_name }}</h3>
                 <p class="mt-2">商品内容<br>{{ $item->text }}</p>
                 <p class="mt-2">カテゴリー:{{ $item->category }}</p>
                 <p class="mt-2">価格:{{ $item->price }}円</p>
@@ -54,6 +63,12 @@
                     @can('admin')
                         <button class="bg-gray-500 hover:bg-gray-400 text-white rounded px-1 py-1">削除</button>
                     @endcan
+                </form>
+                <form action="{{ route('cart',$carts->id)}}" method="POST">
+                    @csrf
+                    <button class="bg-yellow-500 hover:bg-yellow-300 text-white rounded px-1 py-1">
+                        カートに入れる。
+                    </button>
                 </form>
             </div>
         @endforeach

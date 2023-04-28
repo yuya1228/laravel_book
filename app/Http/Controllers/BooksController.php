@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Cart;
+use App\Models\User;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -30,8 +32,8 @@ class BooksController extends Controller
             $query->where('name', 'LIKE', "%{$keyword}%");
         }
 
-        if(!empty($categories)){
-            $query->where('category_id','LIKE',$categories);
+        if (!empty($categories)) {
+            $query->where('category_id', 'LIKE', $categories);
         }
 
         // ページネート+joinで結合したデータの取得
@@ -40,10 +42,17 @@ class BooksController extends Controller
 
         $categories = Category::all();
         $books = Book::all();
+
+        // cartテーブル、userテーブル、booksテーブル結合
+        $query = Cart::query();
+        $query->join('books', 'carts.book_id', 'books.id')
+            ->join('users', 'carts.user_id', 'users.id')->get();
+        $carts = $query->first();
+
         // 現在、ログインしているユーザーの取得
         $user = Auth::user();
 
-        return view('books.index', compact('books', 'categories', 'keyword', 'items','user'));
+        return view('books.index', compact('books', 'categories', 'keyword', 'items', 'user', 'carts'));
     }
 
     /**
@@ -67,7 +76,7 @@ class BooksController extends Controller
             'name' => $request->name,
             'image' => $img,
             'text' => $request->text,
-            'price'=>$request->price,
+            'price' => $request->price,
             'category_id' => $request->category_id,
             'quantity' => $request->quantity,
         ]);
@@ -107,7 +116,7 @@ class BooksController extends Controller
             'name' => $request->name,
             'category_id' => $request->category_id,
             'text' => $request->text,
-            'price'=>$request->price,
+            'price' => $request->price,
             'quantity' => $request->quantity,
         ]);
         return redirect()->route('books.index');

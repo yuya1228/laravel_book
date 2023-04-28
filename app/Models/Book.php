@@ -11,7 +11,7 @@ class Book extends Model
     protected $table = 'books';
 
     protected $fillable = [
-        'name',
+        'book_name',
         'category_id',
         'image',
         'text',
@@ -20,6 +20,11 @@ class Book extends Model
 
     public function categories()
     {
-        return $this->belongsTo(Category::class, 'category');
+        return $this->belongsTo(Category::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(Cart::class);
     }
 }

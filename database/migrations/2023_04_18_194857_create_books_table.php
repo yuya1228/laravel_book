@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('本のタイトル');
+            $table->string('book_name')->comment('本のタイトル');
             $table->unsignedBigInteger('category_id')->comment('本のカテゴリーID');
             $table->string('image')->comment('画像');
             $table->string('text')->comment('本の内容');

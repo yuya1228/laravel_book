@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +22,16 @@ use App\Http\Controllers\StripeController;
 
 // CRUD
 Route::resource('/books', BooksController::class);
+// マイカート
+Route::get('/mycart',[CartsController::class,'mycart'])->middleware(['auth'])->name('books.mycart');
+Route::post('/mycart/{users}',[CartsController::class,'cart'])->middleware(['auth'])->name('cart');
 
-Route::post('/charge',[StripeController::class,'charge'])->name('stripe.charge');
+// Stripe決済機能
+Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
+
+// 管理者専用ユーザー作成
+Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
+Route::post('admin/store', [AdminController::class, 'store'])->name('admin.store');
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,7 +39,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,4 +47,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

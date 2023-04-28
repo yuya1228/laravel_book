@@ -1,5 +1,7 @@
 @extends('layouts.book')
 
+@section('header_book')
+
 @section('content')
     {{-- フラッシュメッセージ --}}
     <script>
@@ -37,12 +39,13 @@
                 <label for="category_id">カテゴリー</label>
                 <input type="number" min="1" max="5" name="category_id" value="{{ old('category_id') }}">
                 @error('category_id')
-                <li>{{ $message }}</li>
+                    <li>{{ $message }}</li>
                 @enderror
             </div>
             <div>
                 <label for="quantity">数</label>
-                <input type="number" name="quantity" min="0" value="{{ old('quantity') }}" min:0 placeholder="在庫数を入れてください">
+                <input type="number" name="quantity" min="0" value="{{ old('quantity') }}" min:0
+                    placeholder="在庫数を入れてください">
                 @error('quantity')
                     <li>{{ $message }}</li>
                 @enderror

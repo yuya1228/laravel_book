@@ -14,7 +14,7 @@
             </li>
             <li>
                 <label for="name">タイトル
-                    <input type="text" name="name" value="{{ $books->name }}"></label>
+                    <input type="text" name="book_name" value="{{ $books->book_name }}"></label>
             </li>
             <li>
                 <label for="category_id">カテゴリー
