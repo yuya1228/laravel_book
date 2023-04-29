@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Cart extends Model
 {
@@ -12,17 +13,26 @@ class Cart extends Model
     protected $table = 'carts';
 
     protected $fillable = [
-        'user_id',
         'book_id',
+        'user_id'
     ];
 
-    public function user()
+    public function cart($book_id)
     {
-        return $this->belongsTo(User::class);
+        $user_id = Auth::id();
+        $my_carts = Cart::firstOrCreate(['book_id'=>$book_id,'user_id'=>$user_id]);
     }
 
-    public function books()
+    public function book()
     {
-        return $this->belongsToMany(Book::class);
+        return $this->belongsTo(Book::class);
+    }
+
+    public function ShowCart()
+    {
+        $user_id = Auth::id();
+        $data['my_carts']=$this->where('user_id',$user_id)->get();
+
+        return $data;
     }
 }

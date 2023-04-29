@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
-use App\Models\Cart;
 use App\Models\User;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Auth;
@@ -41,18 +40,12 @@ class BooksController extends Controller
         // ここまで
 
         $categories = Category::all();
-        $books = Book::all();
-
-        // cartテーブル、userテーブル、booksテーブル結合
-        $query = Cart::query();
-        $query->join('books', 'carts.book_id', 'books.id')
-            ->join('users', 'carts.user_id', 'users.id')->get();
-        $carts = $query->first();
+        $books = Book::all();;
 
         // 現在、ログインしているユーザーの取得
         $user = Auth::user();
 
-        return view('books.index', compact('books', 'categories', 'keyword', 'items', 'user', 'carts'));
+        return view('books.index', compact('books', 'categories', 'keyword', 'items', 'user'));
     }
 
     /**

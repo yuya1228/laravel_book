@@ -2,30 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 use App\Models\Cart;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class CartsController extends Controller
 {
-    public function mycart(Request $request)
+    public function mycart(Cart $cart)
     {
-        $posts = Cart::where('user_id',\Auth::user()->id)->get();
-        $query = Cart::query();
-        $query->join('books', 'carts.book_id', 'books.id')
-            ->join('users', 'carts.user_id', 'users.id')->get();
-        $carts = $query->get();
+        $data = $cart->ShowCart();
 
-        $user = Auth::user();
-        return view('books.mycart', compact('user', 'carts','posts'));
+        return view('shops.mycart',$data);
     }
 
-    public function cart(Request $request)
+    public function cart(Request $request,Cart $cart)
     {
-        $user = Auth::id();
-        $carts = Cart::all();
-        return redirect()->route('books.mycart', compact('user', 'carts'))->with('cart_message', 'カートに入れました。');
+        $book_id = $request ->book_id;
+        $message = $cart->Cart($book_id);
+
+        $data = $cart->showCart();
+        return view ('shops.mycart',$data)->with('message','$message');
     }
 }

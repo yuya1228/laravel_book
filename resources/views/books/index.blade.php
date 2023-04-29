@@ -64,11 +64,11 @@
                         <button class="bg-gray-500 hover:bg-gray-400 text-white rounded px-1 py-1">削除</button>
                     @endcan
                 </form>
-                <form action="{{ route('cart',$carts->id)}}" method="POST">
+                <form action="{{ route('cart')}}" method="POST">
                     @csrf
-                    <button class="bg-yellow-500 hover:bg-yellow-300 text-white rounded px-1 py-1">
-                        カートに入れる。
-                    </button>
+                    <input type="hidden" name="book_id" value="{{ $item->id }}">
+                    <input type="submit" class="bg-yellow-500 hover:bg-yellow-300 text-white rounded px-1 py-1"
+                    value="カートに入れる。">
                 </form>
             </div>
         @endforeach
