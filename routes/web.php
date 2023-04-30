@@ -28,6 +28,8 @@ Route::get('/mycart',[CartsController::class,'mycart'])->middleware(['auth'])->n
 Route::post('/cart',[CartsController::class,'cart'])->middleware(['auth'])->name('cart')->middleware('auth');
 // マイカートに追加した本の削除
 Route::delete('cartdelete',[CartsController::class,'destroy'])->name('cart.delete');
+// マイカートに追加した商品の購入
+Route::post('/purchase',[CartsController::class,'purchase'])->name('shops.purchase');
 
 // Stripe決済機能
 Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');

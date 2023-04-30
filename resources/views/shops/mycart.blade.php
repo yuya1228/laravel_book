@@ -28,6 +28,16 @@
                 </div>
             @endforeach
         </div>
+        <div class="purchase text-center">
+            <p>個数:{{ $count }}個</p>
+            <p>合計金額:{{ number_format($sum) }}円</p>
+        </div>
+        <form action="{{ route('shops.purchase') }}" method="post">
+            @csrf
+            <div class="text-center mt-5">
+                <input type="submit" value="購入する。" class="bg-yellow-500 hover:bg-yellow-300 text-white  py-2 px-2">
+            </div>
+        </form>
     @else
         <p class="empty">カートは空っぽです</p>
     @endif

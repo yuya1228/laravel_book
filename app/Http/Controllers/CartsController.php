@@ -34,4 +34,10 @@ class CartsController extends Controller
 
         return view('shops.mycart',$data)->with('message',$message);
     }
+
+    public function purchase(Cart $cart)
+    {
+        $cart->purchase();
+        return view('shops.purchase');
+    }
 }
