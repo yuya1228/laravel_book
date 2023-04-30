@@ -10,6 +10,7 @@
         <p>商品内容:{{ $books->text }}</p>
         <p>価格:{{ $books->price }}円</p>
         <p>在庫数:{{ $books->quantity }}</p>
+
         <form action="{{ route('stripe.charge') }}" method="POST">
             @csrf
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}"

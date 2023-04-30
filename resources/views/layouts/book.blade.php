@@ -17,8 +17,8 @@
 <header>
     @yield('book_header')
     <a href="{{ route('books.index') }}">
-        <h1 class="text-white hover:text-blue-500 text-6xl text-center font-mono pt-24">
-            Book</h1>
+        <h1 class="text-green-500 hover:text-blue-500 text-6xl text-center font-mono pt-24">
+            Book Shop</h1>
     </a>
     <div id="app">
         <button type="button" class="menu-btn" v-on:click="open=!open">

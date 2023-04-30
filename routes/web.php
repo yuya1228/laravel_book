@@ -32,7 +32,7 @@ Route::delete('cartdelete',[CartsController::class,'destroy'])->name('cart.delet
 Route::post('/purchase',[CartsController::class,'purchase'])->name('shops.purchase');
 
 // Stripe決済機能
-Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
+Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge')->middleware('auth');
 
 // 管理者専用ユーザー作成
 Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
