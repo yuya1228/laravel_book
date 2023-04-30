@@ -23,8 +23,11 @@ use App\Http\Controllers\CartsController;
 // CRUD
 Route::resource('/books', BooksController::class);
 // マイカート
-Route::get('/mycart',[CartsController::class,'mycart'])->middleware(['auth'])->name('shops.mycart');
-Route::post('/cart',[CartsController::class,'cart'])->middleware(['auth'])->name('cart')->middleware(['auth']);
+Route::get('/mycart',[CartsController::class,'mycart'])->middleware(['auth'])->name('shops.mycart')->middleware('auth');
+// 本をマイカートに追加
+Route::post('/cart',[CartsController::class,'cart'])->middleware(['auth'])->name('cart')->middleware('auth');
+// マイカートに追加した本の削除
+Route::delete('cartdelete',[CartsController::class,'destroy'])->name('cart.delete');
 
 // Stripe決済機能
 Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');

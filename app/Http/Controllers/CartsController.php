@@ -24,4 +24,14 @@ class CartsController extends Controller
         $data = $cart->showCart();
         return view ('shops.mycart',$data)->with('message','$message');
     }
+
+    public function destroy(Request $request,Cart $cart)
+    {
+        $book_id = $request->book_id;
+        $message = $cart->deleteCart($book_id);
+
+        $data = $cart->showCart();
+
+        return view('shops.mycart',$data)->with('message',$message);
+    }
 }

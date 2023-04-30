@@ -26,6 +26,7 @@
         </button>
         <div class="menu" v-bind:class="{'is-active':open}">
             <a href="{{ route('books.index') }}" class="menu_item">一覧ページ</a>
+            <a href="{{ route('shops.mycart') }}" class="menu_item">マイカート</a>
             @can('admin')
                 <a href="{{ route('books.create') }}" class="menu_item">本の登録</a>
             @endcan
