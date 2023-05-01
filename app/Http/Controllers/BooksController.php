@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
-use App\Models\User;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +18,6 @@ class BooksController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Book::paginate(8);
         // 検索機能
         $keyword = $request->input('keyword');
         $categories = $request->input('category');
@@ -66,7 +64,7 @@ class BooksController extends Controller
         $img = $image->storeAs('', $image->getClientOriginalName(), 'public');
 
         Book::create([
-            'name' => $request->name,
+            'book_name' => $request->book_name,
             'image' => $img,
             'text' => $request->text,
             'price' => $request->price,

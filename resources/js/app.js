@@ -30,4 +30,10 @@ var app = new Vue({
     }
 })
 
+const button = document.getElementsByTagName('input');
+
+button.addEventListener('click', function () {
+    button.classList.add('disable');
+});
+
 

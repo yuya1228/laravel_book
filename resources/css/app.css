@@ -85,3 +85,9 @@ ul {
 li {
     list-style: none;
 }
+
+
+.disable {
+    pointer-events: none;
+    opacity: .5;
+}

@@ -38,6 +38,11 @@ Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge
 Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
 Route::post('admin/store', [AdminController::class, 'store'])->name('admin.store');
 
+// フォールバックルート
+Route::fallback(function(){
+    return redirect ('/index');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

@@ -6,22 +6,23 @@
 <form action="{{ route('books.update',$books->id) }}" method="POST">
 @csrf
 @method('put')
-    <div>
+    <div class="text-center mt-10">
         <ul>
             <li>
+                <img src="{{ asset('storage/' . $books->image) }}" alt="{{ $books->image }}" class="w-48 m-auto">
                 <label for="image">画像
-                    <input type="file" name="image" value="{{ $books->image }}"><img src="{{ asset('storage/' . $books->image) }}" alt="{{ $books->image }}" class="w-48"></label>
+                    <input type="file" name="image" value="{{ $books->image }}" class="mt-10"></label>
             </li>
             <li>
                 <label for="name">タイトル
-                    <input type="text" name="book_name" value="{{ $books->book_name }}"></label>
+                    <input type="text" name="book_name" class="m-5" value="{{ $books->book_name }}"></label>
             </li>
             <li>
                 <label for="category_id">カテゴリー
                     <input type="number" name="category_id" value="{{ $books->category_id }}">
                 </label>
             <li>
-                <label for="text"><p>テキスト</p>
+                <label for="text"><p class="mt-5">テキスト</p>
                     <textarea name="text" cols="30" rows="10">{{ $books->text }}</textarea>
                 </label>
             </li>

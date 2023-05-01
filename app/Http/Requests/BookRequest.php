@@ -22,22 +22,24 @@ class BookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:books,name',
+            'book_name' => 'required|unique:books,book_name',
             'image' => 'required',
             'text' => 'required',
             'category_id'=>'required|numeric',
             'quantity' => 'required|numeric',
+            'price'=>'required|numeric',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => '本の名前を入力してください。',
+            'book_name.required' => '本の名前を入力してください。',
             'image.required' => '画像を入れてください。',
             'text.required' => '本の内容を入力してください。',
             'category_id.required'=>'カテゴリーを選択してください。',
-            'quantity.required' => '本の在庫を入力してください。'
+            'quantity.required' => '本の在庫を入力してください。',
+            'price.required'=>'価格を入力してください。'
         ];
     }
 }
